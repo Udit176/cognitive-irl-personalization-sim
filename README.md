@@ -1,6 +1,6 @@
 # Cognitive IRL Personalization Simulation
 
-This repository implements a simulation and evaluation suite for cognitive inverse reinforcement learning with personalization in human-robot interaction.
+This repository implements a simulation cognitive inverse reinforcement learning with personalization in human-robot interaction.
 
 ## What This Demonstrates
 
