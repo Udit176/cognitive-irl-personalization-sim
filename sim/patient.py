@@ -85,7 +85,10 @@ class Patient:
                  + w_effort_eff * ||u||^2
                  + w_smooth * ||u - u_prev||^2
 
-        where p_{t+1}(u) = p_t + dt * v_t + dt^2 * (u + a).
+        Patient's internal model uses semi-implicit Euler prediction:
+            v_{t+1} = v_t + dt * (u + a) (ignoring noise)
+            p_{t+1} = p_t + dt * v_{t+1}
+                    = p_t + dt * v_t + dt^2 * (u + a)
 
         Taking the derivative and setting to zero:
             dC/du = 2 * w_goal * dt^2 * (delta + dt^2 * u)
@@ -110,10 +113,10 @@ class Patient:
         position = state[:2]
         velocity = state[2:]
 
-        # Predicted position without patient action
+        # Predicted position error using semi-implicit Euler
         delta = position + self.dt * velocity + (self.dt ** 2) * assist - self.goal
 
-        # Coefficients
+        # Closed-form solution
         numerator = self.w_smooth * u_prev - self.w_goal * (self.dt ** 2) * delta
         denominator = self.w_goal * (self.dt ** 4) + w_effort_eff + self.w_smooth
 
