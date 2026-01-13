@@ -159,6 +159,7 @@ def plot_results(
 
     plt.tight_layout()
     output_path = "results/figures/fig1_param_error.png"
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
     plt.savefig(output_path, dpi=150)
     plt.close()
     print(f"Figure saved to {output_path}")
@@ -179,6 +180,7 @@ def plot_results(
 
     plt.tight_layout()
     output_path = "results/figures/fig2_test_nll.png"
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
     plt.savefig(output_path, dpi=150)
     plt.close()
     print(f"Figure saved to {output_path}")
